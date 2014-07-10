@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PSCollectionView.h"
 
-@interface ViewController : UIViewController<UIScrollViewDelegate,PSCollectionViewDataSource,PSCollectionViewDelegate,UIGestureRecognizerDelegate>
+@interface ViewController : UIViewController<UIScrollViewDelegate,PSCollectionViewDataSource,PSCollectionViewDelegate,PSCollectionViewTouchDelegate,UIGestureRecognizerDelegate>
 
 @property(nonatomic,strong) PSCollectionView *psCollectionView;
 

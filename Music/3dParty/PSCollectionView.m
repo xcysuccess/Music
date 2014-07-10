@@ -26,7 +26,7 @@
 #define kMargin 8.0
 
 static inline NSString * PSCollectionKeyForIndex(NSInteger index) {
-    return [NSString stringWithFormat:@"%d", index];
+    return [NSString stringWithFormat:@"%ld", (long)index];
 }
 
 static inline NSInteger PSCollectionIndexForKey(NSString *key) {
@@ -429,6 +429,28 @@ static inline NSInteger PSCollectionIndexForKey(NSString *key) {
     } else {
         return NO;
     }
+}
+
+-(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"touchesBegin");
+}
+
+-(void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //1.根据point判断出是在collectionview中的index
+    UITouch *touch = [touches anyObject];
+    CGPoint currentLocation = [touch locationInView:self];
+    NSLog(@"point->%@",NSStringFromCGPoint(currentLocation));
+    
+    //2.设置index的那个如果点击了就取消，否则就点击
+    [self.collectionTouchDelegate collectionTouchMove:self touchPoint:currentLocation];
+    
+}
+
+-(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    //    NSLog(@"touchesEnd");
 }
 
 @end

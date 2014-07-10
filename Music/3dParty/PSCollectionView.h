@@ -30,6 +30,15 @@
 
 @protocol PSCollectionViewDelegate, PSCollectionViewDataSource;
 
+
+@protocol PSCollectionViewTouchDelegate <NSObject>
+
+@optional
+- (void)collectionTouchMove:(PSCollectionView *)collectionView touchPoint: (CGPoint) point;
+
+@end
+
+
 @interface PSCollectionView : UIScrollView
 
 #pragma mark - Public Properties
@@ -43,6 +52,7 @@
 @property (nonatomic, assign) NSInteger numColsPortrait;
 @property (nonatomic, unsafe_unretained) id <PSCollectionViewDelegate> collectionViewDelegate;
 @property (nonatomic, unsafe_unretained) id <PSCollectionViewDataSource> collectionViewDataSource;
+@property (nonatomic, unsafe_unretained) id <PSCollectionViewTouchDelegate> collectionTouchDelegate;
 
 #pragma mark - Public Methods
 
